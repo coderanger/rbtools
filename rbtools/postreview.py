@@ -366,6 +366,10 @@ class ReviewBoardServer(object):
             # Cookie files don't store port numbers, unfortunately, so
             # get rid of the port number if it's present.
             host = host.split(":")[0]
+            
+            # Cookie files also append .local to bare hostnames
+            if '.' not in host:
+                host += '.local'
 
             debug("Looking for '%s %s' cookie in %s" % \
                   (host, path, self.cookie_file))
